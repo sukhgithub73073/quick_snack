@@ -30,7 +30,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  quick_snack: any
+  quick_snack: ^0.0.2
 ```
 
 ## Usage
