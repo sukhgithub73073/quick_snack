@@ -1,8 +1,3 @@
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter/material.dart';
 
-import 'package:quick_snack/quick_snack.dart';
-
-void main() {
-
-
-}
+void main() {}
