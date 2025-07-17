@@ -59,6 +59,17 @@ QuickSnackBarUtil.show(
 );
 ```
 
+### Show a warning snackbar
+
+```
+QuickSnackBarUtil.show(
+  context: context,
+  title: 'Warning',
+  message: 'Please check your input',
+  type: QuickSnackBarType.warning,
+);
+```
+
 ### Show a custom-colored snackbar
 
 ```
