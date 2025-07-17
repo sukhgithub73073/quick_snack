@@ -48,3 +48,14 @@ QuickSnackBarUtil.show(
 );
 ```
 
+
+### Show a failure snackbar
+
+```
+QuickSnackBarUtil.show(
+  context: context,
+  title: 'Error',
+  message: 'Something went wrong!',
+  type: QuickSnackBarType.failure,
+);
+```
