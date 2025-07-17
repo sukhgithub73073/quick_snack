@@ -132,8 +132,6 @@ class QuickSnackBarUtil {
     bool isDismissible = true,
   }) {
     final overlay = Overlay.of(context);
-    if (overlay == null) return;
-
     final (backgroundColor, iconData) = _getTypeProperties(type, customColor);
 
     final overlayEntry = OverlayEntry(
