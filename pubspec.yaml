@@ -1,7 +1,7 @@
 name: quick_snack
 description: A lightweight toast/snackbar package using GetX with support for success, failure, warning, and custom styles.
 
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/sukhgithub73073/quick_snack.git
 
 environment:
