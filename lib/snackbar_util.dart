@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 enum SnackBarPosition {
   /// Snackbar appears at the top of the screen
   top,
+
   /// Snackbar appears at the bottom of the screen
-  bottom
+  bottom,
 }
 
 /// Defines the visual style and behavior type of the snackbar.
@@ -22,14 +23,18 @@ enum SnackBarPosition {
 enum QuickSnackBarType {
   /// Green snackbar with check circle icon - used for successful operations
   success,
+
   /// Red snackbar with error icon - used for failed operations or errors
   failure,
+
   /// Orange snackbar with warning icon - used for warnings and cautions
   warning,
+
   /// Blue snackbar with info icon - used for informational messages
   info,
+
   /// Custom colored snackbar with notification icon - allows custom styling
-  custom
+  custom,
 }
 
 /// A utility class for displaying animated, customizable snackbars in Flutter.
@@ -182,29 +187,29 @@ class QuickSnackBarUtil {
   /// - Info: Material Blue (0xFF2196F3)
   /// - Custom: Provided color or gray fallback (0xFF424242)
   static (Color, IconData) _getTypeProperties(
-      QuickSnackBarType type,
-      Color? customColor,
-      ) {
+    QuickSnackBarType type,
+    Color? customColor,
+  ) {
     return switch (type) {
       QuickSnackBarType.success => (
-      const Color(0xFF4CAF50), // Material Green
-      Icons.check_circle,
+        const Color(0xFF4CAF50), // Material Green
+        Icons.check_circle,
       ),
       QuickSnackBarType.failure => (
-      const Color(0xFFF44336), // Material Red
-      Icons.error
+        const Color(0xFFF44336), // Material Red
+        Icons.error,
       ),
       QuickSnackBarType.warning => (
-      const Color(0xFFFF9800), // Material Orange
-      Icons.warning
+        const Color(0xFFFF9800), // Material Orange
+        Icons.warning,
       ),
       QuickSnackBarType.info => (
-      const Color(0xFF2196F3), // Material Blue
-      Icons.info
+        const Color(0xFF2196F3), // Material Blue
+        Icons.info,
       ),
       QuickSnackBarType.custom => (
-      customColor ?? const Color(0xFF424242), // Custom or gray fallback
-      Icons.notifications,
+        customColor ?? const Color(0xFF424242), // Custom or gray fallback
+        Icons.notifications,
       ),
     };
   }
@@ -318,17 +323,18 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
       vsync: this,
     );
 
-    _slideAnimation = Tween<Offset>(
-      // Start position: off-screen in direction opposite to final position
-      begin: isTop ? const Offset(0, -1.2) : const Offset(0, 1.2),
-      end: Offset.zero, // Final position: on-screen
-    ).animate(
-      CurvedAnimation(
-        parent: _slideController,
-        curve: Curves.elasticOut, // Bouncy entrance
-        reverseCurve: Curves.easeInBack, // Smooth exit
-      ),
-    );
+    _slideAnimation =
+        Tween<Offset>(
+          // Start position: off-screen in direction opposite to final position
+          begin: isTop ? const Offset(0, -1.2) : const Offset(0, 1.2),
+          end: Offset.zero, // Final position: on-screen
+        ).animate(
+          CurvedAnimation(
+            parent: _slideController,
+            curve: Curves.elasticOut, // Bouncy entrance
+            reverseCurve: Curves.easeInBack, // Smooth exit
+          ),
+        );
 
     // Fade animation - controls opacity
     _fadeController = AnimationController(
@@ -434,20 +440,6 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                   decoration: BoxDecoration(
                     color: widget.backgroundColor,
                     borderRadius: BorderRadius.circular(16),
-                    // TODO: Re-enable shadow effects if desired
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: widget.backgroundColor,
-                    //     blurRadius: 20,
-                    //     offset: const Offset(0, 8),
-                    //     spreadRadius: 2,
-                    //   ),
-                    //   BoxShadow(
-                    //     color: Colors.black.withOpacity(0.1),
-                    //     blurRadius: 10,
-                    //     offset: const Offset(0, 4),
-                    //   ),
-                    // ],
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16),
@@ -472,8 +464,8 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                Colors.white.withOpacity(0.2),
-                                Colors.white.withOpacity(0.05),
+                                Colors.white.withAlpha((255 * 0.2).toInt()),
+                                Colors.white.withAlpha((255 * 0.05).toInt()),
                               ],
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
@@ -491,9 +483,11 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                             builder: (context, child) {
                               return LinearProgressIndicator(
                                 value: _progressAnimation.value,
-                                backgroundColor: Colors.white.withOpacity(0.2),
+                                backgroundColor: Colors.white.withAlpha(
+                                  (255 * 0.2).toInt(),
+                                ),
                                 valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.white.withOpacity(0.6),
+                                  Colors.white.withAlpha((255 * 0.6).toInt()),
                                 ),
                                 minHeight: 3,
                               );
@@ -519,8 +513,12 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                                         child: Container(
                                           padding: const EdgeInsets.all(8),
                                           decoration: BoxDecoration(
-                                            color: Colors.white.withOpacity(0.2),
-                                            borderRadius: BorderRadius.circular(12),
+                                            color: Colors.white.withAlpha(
+                                              (255 * 0.2).toInt(),
+                                            ),
+                                            borderRadius: BorderRadius.circular(
+                                              12,
+                                            ),
                                           ),
                                           child: Icon(
                                             widget.iconData,
@@ -545,7 +543,9 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                                     if (widget.title != null &&
                                         widget.title!.isNotEmpty) ...[
                                       TweenAnimationBuilder<double>(
-                                        duration: const Duration(milliseconds: 500),
+                                        duration: const Duration(
+                                          milliseconds: 500,
+                                        ),
                                         tween: Tween(begin: 0.0, end: 1.0),
                                         builder: (context, value, child) {
                                           return Transform.translate(
@@ -556,7 +556,8 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                                                 widget.title!,
                                                 style: const TextStyle(
                                                   color: Colors.white,
-                                                  decoration: TextDecoration.none,
+                                                  decoration:
+                                                      TextDecoration.none,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16,
                                                   letterSpacing: 0.5,
@@ -571,7 +572,9 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
 
                                     // Animated message text
                                     TweenAnimationBuilder<double>(
-                                      duration: const Duration(milliseconds: 600),
+                                      duration: const Duration(
+                                        milliseconds: 600,
+                                      ),
                                       tween: Tween(begin: 0.0, end: 1.0),
                                       builder: (context, value, child) {
                                         return Transform.translate(
@@ -594,26 +597,6 @@ class _AnimatedSnackBarState extends State<_AnimatedSnackBar>
                                   ],
                                 ),
                               ),
-
-                              // TODO: Optional close button (currently disabled)
-                              // if (widget.isDismissible) ...[
-                              //   const SizedBox(width: 12),
-                              //   GestureDetector(
-                              //     onTap: _dismiss,
-                              //     child: Container(
-                              //       padding: const EdgeInsets.all(4),
-                              //       decoration: BoxDecoration(
-                              //         color: Colors.white.withOpacity(0.2),
-                              //         borderRadius: BorderRadius.circular(8),
-                              //       ),
-                              //       child: Icon(
-                              //         Icons.close,
-                              //         color: Colors.white.withOpacity(0.8),
-                              //         size: 18,
-                              //       ),
-                              //     ),
-                              //   ),
-                              // ],
                             ],
                           ),
                         ),
