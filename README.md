@@ -48,7 +48,6 @@ QuickSnackBarUtil.show(
 );
 ```
 
-
 ### Show a failure snackbar
 
 ```
@@ -59,3 +58,18 @@ QuickSnackBarUtil.show(
   type: QuickSnackBarType.failure,
 );
 ```
+
+### Show a custom-colored snackbar
+
+```
+QuickSnackBarUtil.show(
+  context: context,
+  title: 'Custom',
+  message: 'This is a custom-colored snackbar',
+  type: QuickSnackBarType.custom,
+  customColor: Colors.purple,
+);
+```
+
+✅ Paste this section into your `README.md` under the "Usage" heading. Let me know if you want to add
+screenshots or badges next.
