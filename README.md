@@ -81,6 +81,3 @@ QuickSnackBarUtil.show(
   customColor: Colors.purple,
 );
 ```
-
-✅ Paste this section into your `README.md` under the "Usage" heading. Let me know if you want to add
-screenshots or badges next.
